@@ -53,7 +53,10 @@ class _HomeState extends State < Home > {
                       setState(() {
                         shops.add(
                           Shop(
+                            key: GlobalKey(),
                             name: controller.text,
+                            items: [],
+                            onDelete: removeShop,
                           ),
                         );
                       });
@@ -69,27 +72,15 @@ class _HomeState extends State < Home > {
     );
   }
 
-  void showShopActions(Shop shop) {
-    showMenu(
-      context: context,
-      position: RelativeRect.fromLTRB(1, 0, 0, 0),
-      items: [
-        PopupMenuItem < int > (
-          value: 0,
-          child: Text('Delete'),
-        ),
-      ],
-    );
+  void removeShop(Shop shop) {
+    setState(() => shops.remove(shop));
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ...(shops.map((shop) => GestureDetector(
-          child: shop,
-          onLongPress: () => showShopActions(shop),
-        )).toList()),
+        ...shops,
         FloatingActionButton(
           child: Icon(
             Icons.add,

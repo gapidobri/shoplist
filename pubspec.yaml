@@ -14,6 +14,7 @@ dependencies:
   salomon_bottom_bar: ^2.0.0
   google_fonts: ^1.1.1
   flutter_material_color_picker: ^1.0.5
+  flutter_spinbox: ^0.2.1
 
   cupertino_icons: ^1.0.1
 
